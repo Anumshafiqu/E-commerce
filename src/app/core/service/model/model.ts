@@ -18,3 +18,10 @@ export interface Iproduct {
     result: boolean,
     data:any,
   }
+  export interface CategoryModel {
+    categoryId:number,
+    categoryName: string,
+    parentCategoryId:number,
+    userId:number,
+  }
+  

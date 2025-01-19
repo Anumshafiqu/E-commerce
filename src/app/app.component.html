@@ -30,19 +30,15 @@
         
         <!-- Pages Dropdown -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-white"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             PAGES
           </a>
+          
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Page 1</a></li>
-            <li><a class="dropdown-item" href="#">Page 2</a></li>
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
 
@@ -63,14 +59,217 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" href="#"  data-bs-target="myModal">
            <i class="fa fa-user" aria-hidden="true"></i>
           </a>
         </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user fs-5 me-1" style="color: #221122"></i>
+          </a>
+          <ul
+            class="dropdown-menu"
+            style="left: -50px"
+            aria-labelledby="navbarDropdown"
+          >
+            <div class="d-flex justify-content-evenly mt-2">
+              <!-- Login Button -->
+              <button
+                type="button"
+                class="btn btn-danger rounded-0 px-3 mx-2"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                Login
+              </button>
+
+              <!-- Register Button -->
+              <button
+              type="button"
+              class="btn btn-danger rounded-0 px-3"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Register
+            </button>
+            </div>
+          </ul>
+          <!-- <button
+          type="button"
+          class="btn btn-danger rounded-0 px-3"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Register
+        </button> -->
       </ul>
+
     </div>
   </div>
 </nav>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+
+
+
+
+
+
+
+
+<!-- The Modal -->
+<!-- <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Sign up</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+        <div class="col-4">
+          <label for="">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="userResgister.Name">
+        </div>
+        <div class="col-4">
+          <label for="">MobileNo</label>
+          <input type="number" class="form-control" [(ngModel)]="userResgister.MobileNo">
+        </div>
+        <div class="col-6">
+          <label for="">Password</label>
+          <input type="Password" class="form-control" [(ngModel)]="userResgister.Password">
+        </div>
+       </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="onRegister()">Sign up</button>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- Trigger Button -->
+<!-- <button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Open Modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4">
+            <label for="">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="userResgister.Name">
+          </div>
+          <div class="col-4">
+            <label for="">MobileNo</label>
+            <input type="number" class="form-control" [(ngModel)]="userResgister.MobileNo">
+          </div>
+          <div class="col-6">
+            <label for="">Password</label>
+            <input type="Password" class="form-control" [(ngModel)]="userResgister.Password">
+          </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onRegister()">Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <label for="">User Name</label>
+            <input type="text" class="form-control" [(ngModel)]="userLogin.UserName">
+          </div>
+          <div class="col-12">
+            <label for="">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="userLogin.UserPassword">
+          </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onlogin()">Login</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+

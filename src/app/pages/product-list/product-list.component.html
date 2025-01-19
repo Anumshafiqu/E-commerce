@@ -1,4 +1,15 @@
 <div class="container">
+    <h5 class="text-center my-3">All Product</h5>
+    <div class="row">
+        <div class="col">
+            <ng-container *ngIf="categorylist$ | async as apiResponse">
+                <ng-container *ngFor="let item of apiResponse.data">
+                    <button class="btn btn-primary mx-2 mt-2" *ngIf="item.parentCategoryId == 0" (click)="getAllCategoryid(item.categoryId)">{{item.categoryName}}</button>
+                </ng-container>
+                
+            </ng-container>
+        </div>
+    </div>
     <div class="row mt-4">
         @for (item of productList; track 'productId') {
             <div class="col-xxl-3 col-xlg-3 col-lg-3 col-md-4 col-sm-6  mt-4">

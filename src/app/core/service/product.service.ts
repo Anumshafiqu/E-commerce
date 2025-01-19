@@ -11,7 +11,19 @@ apiURL:string='https://freeapi.gerasim.in/api/BigBasket/';
   constructor(private http:HttpClient) {}
   getallProduct() : Observable <APIresponseModel> {
     debugger;
- return this.http.get<APIresponseModel>(`${this.apiURL}GetAllCartItems`)
+ return this.http.get<APIresponseModel>(`${this.apiURL}GetAllProducts`)
+  }
+  getAllcategory(): Observable <APIresponseModel>{
+    return this.http.get<APIresponseModel>(`${this.apiURL}GetAllCategory`)
+  }
+  GetAllProductsByCategoryId(categoryId : number): Observable <APIresponseModel> {
+    return this.http.get<APIresponseModel>(`${this.apiURL}GetAllProductsByCategoryId?id=${categoryId}`)
+  }
+  onregister(obj:any): Observable <APIresponseModel> {
+    return this.http.post<APIresponseModel>(`${this.apiURL}RegisterCustomer` , obj)
+  }
+  login(obj:any): Observable <APIresponseModel> {
+    return this.http.post<APIresponseModel>(`${this.apiURL}Login` , obj)
   }
 
 }
