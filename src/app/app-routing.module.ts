@@ -4,8 +4,8 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'home' , pathMatch:'full'},
-  {path: 'home' , component: ProductListComponent},
+  // {path:'', redirectTo:'home' , pathMatch:'full'},
+  {path: '' , component: ProductListComponent},
   {path : 'checkout' ,component: CheckoutComponent },
   {path: '**' ,component:ProductListComponent}
 ];

@@ -72,15 +72,32 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="fas fa-user fs-5 me-1" style="color: #221122"></i>
+            <i class="fas fa-user fs-5 me-1" style="color: #fff8ff"></i>
           </a>
           <ul
             class="dropdown-menu"
             style="left: -50px"
             aria-labelledby="navbarDropdown"
           >
+          @if (loggesuserdata) {
             <div class="d-flex justify-content-evenly mt-2">
-              <!-- Login Button -->
+              <button
+                type="button"
+                class="btn btn-danger rounded-0 mx-2"
+              >
+                {{loggesuserdata.name}}
+              </button>
+              <button
+              type="button"
+              class="btn btn-danger rounded-0"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              log off
+            </button>
+            </div>
+          }@else {
+            <div class="d-flex justify-content-evenly mt-2">
               <button
                 type="button"
                 class="btn btn-danger rounded-0 px-3 mx-2"
@@ -89,8 +106,6 @@
               >
                 Login
               </button>
-
-              <!-- Register Button -->
               <button
               type="button"
               class="btn btn-danger rounded-0 px-3"
@@ -100,6 +115,25 @@
               Register
             </button>
             </div>
+          }
+            <!-- <div class="d-flex justify-content-evenly mt-2">
+              <button
+                type="button"
+                class="btn btn-danger rounded-0 px-3 mx-2"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                Login
+              </button>
+              <button
+              type="button"
+              class="btn btn-danger rounded-0 px-3"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Register
+            </button>
+            </div> -->
           </ul>
           <!-- <button
           type="button"
@@ -115,62 +149,9 @@
   </div>
 </nav>
 <div class="container">
-  <router-outlet></router-outlet>
+   <router-outlet></router-outlet>
+  <!-- <app-product-list></app-product-list> -->
 </div>
-
-
-
-
-
-
-
-
-
-<!-- The Modal -->
-<!-- <div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Sign up</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-       <div class="row">
-        <div class="col-4">
-          <label for="">Name</label>
-          <input type="text" class="form-control" [(ngModel)]="userResgister.Name">
-        </div>
-        <div class="col-4">
-          <label for="">MobileNo</label>
-          <input type="number" class="form-control" [(ngModel)]="userResgister.MobileNo">
-        </div>
-        <div class="col-6">
-          <label for="">Password</label>
-          <input type="Password" class="form-control" [(ngModel)]="userResgister.Password">
-        </div>
-       </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" (click)="onRegister()">Sign up</button>
-      </div>
-
-    </div>
-  </div>
-</div> -->
-
-<!-- Trigger Button -->
-<!-- <button
-  type="button"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  Open Modal
-</button> -->
-
-<!-- Modal -->
 <div
   class="modal fade"
   id="exampleModal"
@@ -221,7 +202,7 @@
 
 
 
-<!-- <div
+ <div
   class="modal fade"
   id="loginModal"
   tabindex="-1"
@@ -263,7 +244,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div> 
 
 
 

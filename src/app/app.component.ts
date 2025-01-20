@@ -19,7 +19,13 @@ export class AppComponent {
     "UserPassword": "string"
   
  }
- constructor(private prodSer:ProductService) {}
+ loggesuserdata:any;
+ constructor(private prodSer:ProductService) {
+  const localData = localStorage.getItem('ecomuser');
+  if(localData != null){
+    this.loggesuserdata = JSON.parse(localData)
+  }
+ }
   onRegister() {
 this.prodSer.onregister(this.userResgister).subscribe((res:any)=>{
   if(res.result){
@@ -29,13 +35,20 @@ this.prodSer.onregister(this.userResgister).subscribe((res:any)=>{
   }
 })
   }
+  logoff(){
+    localStorage.removeItem('ecomuser');
+    this.loggesuserdata = undefined;
+  }
   onlogin() {
     this.prodSer.login(this.userLogin).subscribe((res:any)=>{
       if(res.result){
-        alert('Login success')
+        alert('Login success');
+        this.loggesuserdata = res.data;
+        localStorage.setItem('ecomuser', JSON.stringify(res.data));
       }else {
         alert(res.message)
       }
     })
       }
+      
 }
