@@ -19,18 +19,38 @@
                         <div class="card-body">
                             <h5>{{item.productShortName}}</h5>
                             <p><strong>{{item.productPrice}}</strong></p>
-                            <div class="">
+                            <div class="d-flex">
                                 <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
                                 <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
                                 <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
                                 <span class="fa-solid fa-star-half-stroke m-0" style="color: #f1af50;"></span>
+                              <!-- <p class="ms-auto"(click)="addtocart(item.productId)"><i class="fa fa-cart-plus" aria-hidden="true"></i></p> -->
+                              <button
+                              class="btn btn-primary mt-2"
+                              (click)="addToCart()"
+                            >
+                              <i class="fa fa-shopping-cart"></i> Add to Cart
+                            </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         }
- 
-
     </div>
+
+
+    <!-- <div class="card">
+        <img src="{{ product.image }}" class="card-img-top" alt="{{ product.productImageUrl }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.productShortName }}</h5>
+          <p class="card-text">₹{{ product.productPrice }}</p>
+          <button
+            class="btn btn-primary mt-2"
+            (click)="addToCart()"
+          >
+            <i class="fa fa-shopping-cart"></i> Add to Cart
+          </button>
+        </div>
+      </div> -->
 </div>

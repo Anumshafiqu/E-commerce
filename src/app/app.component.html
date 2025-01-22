@@ -8,15 +8,8 @@
     </a>
 
     <!-- Toggle Button for Small Screens -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -27,20 +20,23 @@
         <li class="nav-item">
           <a class="nav-link text-white" routerLink="product-list">HOME</a>
         </li>
-        
+
         <!-- Pages Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             PAGES
           </a>
-          
+
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
 
         <!-- Contact Us -->
         <li class="nav-item">
@@ -53,69 +49,161 @@
             <i class="fa fa-search" aria-hidden="true"></i>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#"  data-bs-target="myModal">
-           <i class="fa fa-user" aria-hidden="true"></i>
-          </a>
-        </li>
+        <!-- Cart Icon -->
+        <!-- <button
+      class="btn btn-outline-secondary"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#cartPanel"
+      aria-controls="cartPanel"
+    >
+      <i class="fa fa-shopping-cart"></i>
+      <span class="badge bg-danger">{{ cartData.length }}</span>
+    </button> -->
+
+
+        <!-- Off-canvas Cart Panel -->
+        <!-- <div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="cartPanel"
+  aria-labelledby="cartPanelLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="cartPanelLabel">Cart Items</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-group">
+      <li
+        *ngFor="let item of cartData"
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="cart-item-details">
+          <img
+            [src]="item.image"
+            alt="{{ item.name }}"
+            class="cart-item-img"
+          />
+          <div>
+            <p>{{ item.name }}</p>
+            <p class="text-muted">₹{{ item.price }}</p>
+          </div>
+        </div>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="removeProduct(item.cartId)"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </li>
+    </ul>
+    <div class="mt-3">
+      <button class="btn btn-primary w-100" (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+<!-- 
+        <button class="btn btn-outline-success" (click)="toggleCart()">
+          Cart ({{ cartItems.length }})
+        </button>
+
+
+        <div *ngIf="showCart" class="cart-panel">
+          <h4>Your Cart</h4>
+          <ul>
+            <li *ngFor="let item of cartItems">
+              {{ item.name }} - ₹{{ item.price }}
+            </li>
+          </ul>
+          <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+        </div> -->
+
+        
+  
+
+
+
+
+        <!-- <nav class="navbar navbar-expand-lg">
+          <div class="ml-auto">
+            <button class="btn" (click)="toggleCart()">
+              <i class="fas fa-shopping-cart text-white"></i>
+            </button>
+          </div>
+        </nav> -->
+        
+        <div class="">
+          <button class="btn" (click)="toggleCart()">
+            <i class="fas fa-shopping-cart text-white"></i>
+          </button>
+          <!-- Cart Panel -->
+          <div *ngIf="showCart" class="cart-panel">
+            <h4>Your Cart</h4>
+            <div *ngIf="cartItems.length > 0; else emptyCart">
+              <div class="cart-item-card" *ngFor="let item of cartItems">
+                <img [src]="item.productImageUrl" alt="{{ item.name }}" class="cart-item-image" />
+                <div class="cart-item-details">
+                  <p class="cart-item-name">{{ item.productShortName }}</p>
+                  <p class="cart-item-price">₹{{ item.productPrice }}</p>
+                </div>
+              </div>
+              <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+            </div>
+            <ng-template #emptyCart>
+              <p>Your cart is empty.</p>
+            </ng-template>
+          </div>
+        </div>
+        
+
+
+
+
+
+
+
+
+
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <i class="fas fa-user fs-5 me-1" style="color: #fff8ff"></i>
           </a>
-          <ul
-            class="dropdown-menu"
-            style="left: -50px"
-            aria-labelledby="navbarDropdown"
-          >
-          @if (loggesuserdata) {
+          <ul class="dropdown-menu" style="left: -50px" aria-labelledby="navbarDropdown">
+            @if (loggesuserdata) {
             <div class="d-flex justify-content-evenly mt-2">
-              <button
-                type="button"
-                class="btn btn-danger rounded-0 mx-2"
-              >
+              <button type="button" class="btn btn-danger rounded-0 mx-2">
                 {{loggesuserdata.name}}
               </button>
-              <button
-              type="button"
-              class="btn btn-danger rounded-0"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              log off
-            </button>
+              <button type="button" class="btn btn-danger rounded-0" (click)="logoff()">
+                log off
+              </button>
             </div>
-          }@else {
+            }@else {
             <div class="d-flex justify-content-evenly mt-2">
-              <button
-                type="button"
-                class="btn btn-danger rounded-0 px-3 mx-2"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal"
-              >
+              <button type="button" class="btn btn-danger rounded-0 px-3 mx-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">
                 Login
               </button>
-              <button
-              type="button"
-              class="btn btn-danger rounded-0 px-3"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Register
-            </button>
+              <button type="button" class="btn btn-danger rounded-0 px-3" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Register
+              </button>
             </div>
-          }
+            }
             <!-- <div class="d-flex justify-content-evenly mt-2">
               <button
                 type="button"
@@ -135,40 +223,22 @@
             </button>
             </div> -->
           </ul>
-          <!-- <button
-          type="button"
-          class="btn btn-danger rounded-0 px-3"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Register
-        </button> -->
+        </li>
       </ul>
 
     </div>
   </div>
 </nav>
 <div class="container">
-   <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
   <!-- <app-product-list></app-product-list> -->
 </div>
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -184,14 +254,10 @@
             <label for="">Password</label>
             <input type="Password" class="form-control" [(ngModel)]="userResgister.Password">
           </div>
-         </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button type="button" class="btn btn-primary" (click)="onRegister()">Sign up</button>
@@ -202,23 +268,12 @@
 
 
 
- <div
-  class="modal fade"
-  id="loginModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -230,27 +285,14 @@
             <label for="">Password</label>
             <input type="password" class="form-control" [(ngModel)]="userLogin.UserPassword">
           </div>
-         </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button type="button" class="btn btn-primary" (click)="onlogin()">Login</button>
       </div>
     </div>
   </div>
-</div> 
-
-
-
-
-
-
-
-
-
+</div>
