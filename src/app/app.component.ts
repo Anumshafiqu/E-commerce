@@ -19,61 +19,50 @@ export class AppComponent implements OnInit {
     "UserPassword": "string"
 
   }
-  // cartData: any[] = [];
+  cartData: any[] = [];
   // ngOnInit(): void {
   //   this.getCart();
+
   // }
   loggesuserdata: any;
-  // constructor(private prodSer: ProductService) {
-  //   const localData = localStorage.getItem('ecomuser');
-  //   if (localData != null) {
-  //     this.loggesuserdata = JSON.parse(localData)
-  //   }
-  //   this.prodSer.onCartupdated$?.subscribe(res => {
-  //     this.getCart();
-  //   })
-  // }
-  //   onRegister() {
-  // this.prodSer.onregister(this.userResgister).subscribe((res:any)=>{
-  //   if(res.result){
-  //     alert('signup success')
-  //   }else {
-  //     alert(res.message)
-  //   }
-  // })
-  //   }
-  onRegister() {
-    if (!this.userResgister.Name || !this.userResgister.MobileNo || !this.userResgister.Password) {
-      alert('All fields are required');
-      return;
+  constructor(private prodSer: ProductService) {
+    const localData = localStorage.getItem('ecomuser');
+    if (localData != null) {
+      this.loggesuserdata = JSON.parse(localData)
     }
-    this.prodSer.onregister(this.userResgister).subscribe((res: any) => {
-      if (res.result) {
-        alert('Signup success');
-      } else {
-        alert(res.message);
-      }
-    });
+    this.prodSer.onCartupdated$?.subscribe(res => {
+      this.getCart();
+    })
   }
+    onRegister() {
+  this.prodSer.onregister(this.userResgister).subscribe((res:any)=>{
+    if(res.result){
+      alert('signup success')
+    }else {
+      alert(res.message)
+    }
+  })
+    }
 
-  // removeProduct(CartId: number) {
-  //   this.prodSer.DeleteProductFromCartById(CartId).subscribe((res: any) => {
-  //     if (res.result) {
-  //       this.getCart();
-  //     } else {
-  //       alert(res.message)
-  //     }
-  //   })
-  // }
-  // getCart() {
-  //   this.prodSer.GetCartProductsByCustId(this.loggesuserdata.custId).subscribe((res: any) => {
-  //     if (res.result) {
-  //       this.cartData = res.data;
-  //     } else {
-  //       alert(res.message)
-  //     }
-  //   })
-  // }
+
+  removeProduct(CartId: number) {
+    this.prodSer.DeleteProductFromCartById(CartId).subscribe((res: any) => {
+      if (res.result) {
+        this.getCart();
+      } else {
+        alert(res.message)
+      }
+    })
+  }
+  getCart() {
+    this.prodSer.GetCartProductsByCustId(this.loggesuserdata.custId).subscribe((res: any) => {
+      if (res.result) {
+        this.cartData = res.data;
+      } else {
+        alert(res.message)
+      }
+    })
+  }
 
   logoff() {
     localStorage.removeItem('ecomuser');
@@ -104,64 +93,14 @@ export class AppComponent implements OnInit {
 
 
 
-  cartData: any[] = [];
-  loggedUserId: number = 0;
+  
 
-  constructor(private prodSer: ProductService) {
-    const localData = localStorage.getItem('ecomuser');
-    if (localData != null) {
-      const parsedData = JSON.parse(localData);
-      this.loggedUserId = parsedData.custId;
-    }
 
-    this.prodSer.onCartupdated$?.subscribe(() => {
-      this.getCart();
-    });
-  }
 
-  // ngOnInit(): void {
-  //   this.getCart();
-  // }
 
-  addtocart(ProductId: number) {
-    const cartObj = {
-      ProductId: ProductId,
-      CustId: this.loggedUserId,
-      Quantity: 1,
-    };
-    this.prodSer.onAddToCart(cartObj).subscribe((res: any) => {
-      if (res.result) {
-        alert('Product added to cart');
-        this.prodSer.onCartupdated$?.next(true);
-      }
-    });
-  }
 
-  getCart() {
-    this.prodSer
-      .GetCartProductsByCustId(this.loggedUserId)
-      .subscribe((res: any) => {
-        if (res.result) {
-          this.cartData = res.data;
-        } else {
-          alert(res.message);
-        }
-      });
-  }
 
-  removeProduct(cartId: number) {
-    this.prodSer.DeleteProductFromCartById(cartId).subscribe((res: any) => {
-      if (res.result) {
-        this.getCart();
-      } else {
-        alert(res.message);
-      }
-    });
-  }
 
-  checkout() {
-    alert('Proceeding to checkout...');
-  }
 
 
 
@@ -170,27 +109,21 @@ export class AppComponent implements OnInit {
 
 
   cartItems: any[] = [];
-  showCart = false;
+  showCart: boolean = false;
 
-  // constructor(private cartService: CartService) {}
+  
 
   ngOnInit() {
-    this.prodSer.cartItems$.subscribe((items) => {
-      this.cartItems = items;
-      // this.getCart()
-    });
+    this.cartItems = this.prodSer.getCartItems();
   }
 
   toggleCart() {
+    this.cartItems = this.prodSer.getCartItems(); // Refresh cart items
     this.showCart = !this.showCart;
   }
 
-  // clearCart() {
-  //   this.prodSer.cartItems.next([]);
-  //   this.cartItems = [];
-  // }
-  clearCart() {
-    this.prodSer.clearCart(); // Use the method exposed in the service
+  closeCart() {
+    this.showCart = false;
   }
-  
+
 }

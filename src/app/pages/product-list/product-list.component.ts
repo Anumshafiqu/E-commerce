@@ -19,7 +19,6 @@ export class ProductListComponent implements OnInit {
   loggedUserId :number = 0;
   ngOnInit(): void {
     this.getAllProduct();
-    // this.loadcategory();
     const loggedUser = localStorage.getItem('ecomuser')
     if(loggedUser != null){
       const parseData = JSON.parse(loggedUser);
@@ -27,31 +26,31 @@ export class ProductListComponent implements OnInit {
     }
     this.categorylist$ = this.productService.getAllcategory();
   }
-  // addtocart(ProductId:number) {
-  //   debugger;
-  //   this.cardObj.ProductId = ProductId;
-  //   this.cardObj.CustId = this.loggedUserId;
-  //   this.cardObj.Quantity = 1;
-  //   this.productService.onAddToCart(this.cardObj).subscribe((res: APIresponseModel) => {
-  //    if(res.result) {
-  //     alert('product added to cart');
-  //      this.productService.onCartupdated$?.next(true);
-  //    }
-  //   })
-  // }
-  addtocart(ProductId: number) {
-    const cartObj = {
-      ProductId: ProductId,
-      CustId: this.loggedUserId,
-      Quantity: 1,
-    };
-    this.productService.onAddToCart(cartObj).subscribe((res: any) => {
-      if (res.result) {
-        alert('Product added to cart');
-        this.productService.onCartupdated$?.next(true);
-      }
-    });
+  addtocart(ProductId:number) {
+
+    this.cardObj.ProductId = ProductId;
+    this.cardObj.CustId = this.loggedUserId;
+    this.cardObj.Quantity = 1;
+    this.productService.onAddToCart(this.cardObj).subscribe((res: APIresponseModel) => {
+     if(res.result) {
+      alert('product added to cart');
+       this.productService.onCartupdated$?.next(true);
+     }
+    })
   }
+  // addtocart(ProductId: number) {
+  //   const cartObj = {
+  //     ProductId: ProductId,
+  //     CustId: this.loggedUserId,
+  //     Quantity: 1,
+  //   };
+  //   this.productService.onAddToCart(cartObj).subscribe((res: any) => {
+  //     if (res.result) {
+  //       alert('Product added to cart');
+  //       this.productService.onCartupdated$?.next(true);
+  //     }
+  //   });
+  // }
 
 
   
@@ -73,19 +72,26 @@ export class ProductListComponent implements OnInit {
 
 
 
+  // products = [
+  //   { name: 'Product 1', price: 100 },
+  //   { name: 'Product 2', price: 200 },
+  // ];
 
 
-
-
-
-
-  @Input() product: any;
-
-  // constructor(private cartService: ProductService) {}
-
-  addToCart() {
-    this.productService.addToCart(this.product);
-    alert('Product added to cart!');
+  addToCart(product: any) {
+    this.productService.addToCart(product);
+    alert('product added to the cart')
+    console.log('Product added to cart:', product);
   }
 
+
+
+
+
+
+
+
+
+
+ 
 }

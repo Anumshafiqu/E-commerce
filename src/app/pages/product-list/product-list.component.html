@@ -4,53 +4,37 @@
         <div class="col">
             <ng-container *ngIf="categorylist$ | async as apiResponse">
                 <ng-container *ngFor="let item of apiResponse.data">
-                    <button class="btn btn-primary mx-2 mt-2" *ngIf="item.parentCategoryId == 0" (click)="getAllCategoryid(item.categoryId)">{{item.categoryName}}</button>
+                    <button class="btn btn-primary mx-2 mt-2" *ngIf="item.parentCategoryId == 0"
+                        (click)="getAllCategoryid(item.categoryId)">{{item.categoryName}}</button>
                 </ng-container>
-                
+
             </ng-container>
         </div>
     </div>
     <div class="row mt-4">
         @for (item of productList; track 'productId') {
-            <div class="col-xxl-3 col-xlg-3 col-lg-3 col-md-4 col-sm-6  mt-4">
-                <div class="box-shadow">
-                    <div class="card">
-                        <img [src]="item.productImageUrl" alt="images" class="rounded">
-                        <div class="card-body">
-                            <h5>{{item.productShortName}}</h5>
-                            <p><strong>{{item.productPrice}}</strong></p>
-                            <div class="d-flex">
-                                <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
-                                <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
-                                <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
-                                <span class="fa-solid fa-star-half-stroke m-0" style="color: #f1af50;"></span>
-                              <!-- <p class="ms-auto"(click)="addtocart(item.productId)"><i class="fa fa-cart-plus" aria-hidden="true"></i></p> -->
-                              <button
-                              class="btn btn-primary mt-2"
-                              (click)="addToCart()"
-                            >
-                              <i class="fa fa-shopping-cart"></i> Add to Cart
+        <div class="col-xxl-3 col-xlg-3 col-lg-3 col-md-4 col-sm-6  mt-4">
+            <div class="box-shadow">
+                <div class="card">
+                    <!-- <img [src]="item.productImageUrl" alt="images" class="rounded"> -->
+                    <img [src]="item.productImageUrl" alt="{{ item.productShortName }}" />
+                    <div class="card-body">
+                        <h5>{{item.productShortName}}</h5>
+                        <p><strong>{{item.productPrice}}</strong></p>
+                        <div class="d-flex">
+                            <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
+                            <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
+                            <i class="fa fa-star m-0" aria-hidden="true" style="color: #f1af50;"></i>
+                            <span class="fa-solid fa-star-half-stroke m-0" style="color: #f1af50;"></span>
+                            <button class="btn btn-primary mt-2" (click)="addtocart(item.productId)">
+                                <i class="fa fa-shopping-cart"></i> Add to Cart
                             </button>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         }
     </div>
-
-
-    <!-- <div class="card">
-        <img src="{{ product.image }}" class="card-img-top" alt="{{ product.productImageUrl }}" />
-        <div class="card-body">
-          <h5 class="card-title">{{ product.productShortName }}</h5>
-          <p class="card-text">₹{{ product.productPrice }}</p>
-          <button
-            class="btn btn-primary mt-2"
-            (click)="addToCart()"
-          >
-            <i class="fa fa-shopping-cart"></i> Add to Cart
-          </button>
-        </div>
-      </div> -->
 </div>
